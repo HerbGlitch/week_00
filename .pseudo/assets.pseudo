@@ -1,0 +1,14 @@
+Assets
+    geography
+        -> (possible/temp) https://cainos.itch.io/pixel-art-top-down-basic [32x32]
+    mob
+        player
+            ->
+        units
+            -> https://opengameart.org/content/lpc-medieval-fantasy-character-sprites
+        enemy
+            ->
+    loot
+        ->
+    weapons
+        ->

@@ -1,0 +1,11 @@
+Goal:
+
+Monday -> (splash after timeout will go immediatally to game)
+    langi -> setup temp system (tile map (just blocks of differeing colors), players (differeing colors), ..etc), template overview/interatctions
+    herb  -> code.pseudo::surface, save files, DataTypes, animation (time based movement), sprite stuffs
+
+    optional -> start work on dungeon generator algorithm or map editor
+
+Actual/Evaluation:
+
+Next:

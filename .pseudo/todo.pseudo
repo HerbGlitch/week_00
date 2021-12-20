@@ -1,0 +1,43 @@
+TODO list ->
+    States ->
+        Splash ->
+            display logo - Done
+            display art credit
+            skip on (click, space, esc)
+        
+        Menu ->
+            create buttons
+            switch states on button click
+        
+        Options ->
+            Video (screen size, fullscreen or not, game scale)
+            Controls (ability to change control scheme)
+            Audio (overall volume, music volume, and misc volume)
+            Credits (a scrolly thing with like 3 names max :P)
+        
+        Game ->
+            RTS ->
+
+                Units ->
+                    Unit Handler (add or remove units)
+                    UI feeds data to indivdual units (what is selected or not, can get based on coords of selection)
+                    Unit moves based on choords but checks direction moving if collision with other unit (may move faster if not with group)
+                    Unitis in direction of movment move first
+
+                    Create entity parent class(id, health, xp, range, sprite data....) ->
+                        Ally Soldier ->
+                            
+
+                pause menu ->
+                    basically the Options state I think
+                    pauses the game state from updating
+                    edit video, controls, etc...
+
+                Gameplay ->
+                    move camera with WASD
+                    Make Units Selectable
+                
+                UI ->
+                    Unit Selector manager
+
+

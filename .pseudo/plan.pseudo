@@ -1,0 +1,41 @@
+Monday -> (splash after timeout will go immediatally to game)
+    langi -> setup temp system (tile map (just blocks of differeing colors), players (differeing colors), ..etc), template overview/interatctions
+    herb  -> code.pseudo::surface, save files, DataTypes, animation (time based movement), sprite stuffs
+
+    optional -> start work on dungeon generator algorithm or map editor
+
+Tuesday -> (still just Splash and Game State)
+    langi -> rts camera movment && rts ui interaction (key press management, spawining sprites at locations, that kind of stuff)
+    herb  -> dungeon generation (loot, mobs, dungeon crawler things)
+
+    optional -> more rts overworld things
+
+Wednesday -> break
+
+Thursday -> (still just Splash and Game State)
+    langi -> player collision / entity movement (possible mesh), detection based on coordinate box
+    herb  -> player interaction (attacking, taking damage, etc...), mobs
+
+Friday -> xxx
+
+Saturday -> xxx
+
+Sunday -> (still just Splash and Game State)
+    langi ->
+    herb  -> 
+
+munday -> (Splash, Options, Game State)
+    langi ->
+    herb  ->
+
+tuesday -> (All States)
+    langi ->
+    herb  ->
+
+wednesday -> break
+
+Thursday -> FINAL
+    langi ->
+    herb  ->
+
+optional -> screen shake, grouping

@@ -1,14 +1,10 @@
-#pragma once
-#include <ge.hpp>
+#include "game.hpp"
 
 namespace tbyte {
-    class Game : public ge::State {
-    public:
-        Game();
-        ~Game();
+    Game::Game(){}
+    Game::~Game(){}
 
-        void update();
-        void render();
+    void Game::update(){}
+    void Game::render(){}
 
-    };
 }
