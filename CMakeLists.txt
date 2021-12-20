@@ -6,6 +6,10 @@ project(week00)
 
 add_executable(${PROJECT_NAME}
     src/main.cpp
+
+    src/game/game.cpp
+
+    src/splash/splash.cpp
 )
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
