@@ -8,11 +8,10 @@ namespace tbyte {
         ~Splash();
 
         void update();
-        void render();
 
     private:
         SDL_Texture *tbyteSheet;
 
-        ge::Sprite *logo;
+        ge::Entity *logo;
     };
 }

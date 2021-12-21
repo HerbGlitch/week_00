@@ -41,7 +41,7 @@ game::stuffs
                 -> playable character : 
                 -> controls
                     ->default movement
-                -> mouse (in dungeon)? (weapon attacks / pickax for mining?) : 
+                -> mouse weapon attacks / pickax for mining
             -> Map
                 -> generates map off of seed (exploration can be saved to a file (only will track modification of seeded values))
         -> RTSHandler
