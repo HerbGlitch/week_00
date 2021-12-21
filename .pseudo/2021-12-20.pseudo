@@ -1,0 +1,12 @@
+Goal:
+
+Monday -> (splash after timeout will go immediatally to game)
+    langi -> Keypress, Mob spawing (when 1, 2, or 3 is pressed at location of mouse), mob move towards mouse press with colision (each other)
+    herb  -> Global grid, movement based on dt, movement state machine on Entity, start dungeon generation (seed with loot and other things)
+
+    optional -> Save Files (I REAAAAAALY DON'T WANT TO DO THIS), spawnpoints/objectives on map (reaaaly good idea)
+                simple ui highlight for rts spawn selection
+
+Actual/Evaluation:
+    langi -> 
+    herb -> 

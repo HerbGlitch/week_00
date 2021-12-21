@@ -1,11 +1,9 @@
 Goal:
-
-Monday -> (splash after timeout will go immediatally to game)
     langi -> setup temp system (tile map (just blocks of differeing colors), players (differeing colors), ..etc), template overview/interatctions
     herb  -> code.pseudo::surface, save files, DataTypes, animation (time based movement), sprite stuffs
 
     optional -> map editor
 
 Actual/Evaluation:
-
-Next:
+    langi -> added basic template for rts handler, and mob handler, also created squares for path, wall, stairs, player, allies, and enemies.
+    herb -> global offset, no tearing, png to map, entity class, some inheratince. Mostly just logic for how states work 
