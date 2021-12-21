@@ -2,17 +2,25 @@
 
 namespace tbyte {
     namespace rts {
-        MobHandler::MobHandler(){
-            ge::data->config.load("./res/config/defaults.config");
-            ge::data->config.setGroup("");
+        namespace mob {
+            Handler::Handler(){
+                ge::data->config.load("./res/config/defaults.config");
+                ge::data->config.setGroup("");
 
-            ge::data->config.(SDL_VAR_GET("tempSheet"))
+                ge::data->config.get(GE_VAR_STR(spritesheet));
 
-            new Mob(spritesheet, 1, 100, 100, 0, 32);
-        }
-        
-        MobHandler::~MobHandler(){
-            SDL_DestroyTexture(spritsheet);
+                add(new Mob(spritesheet, 1, 100, 100, 0, 32));
+            }
+
+            Handler::~Handler(){
+                SDL_DestroyTexture(spritesheet);
+            }
+
+            void Handler::update() {
+                for(ge::Object *object : hTypes){
+                    ((Mob *)object)->move(0.01f, 0.00f);
+                }
+            }
         }
     }
 }

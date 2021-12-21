@@ -7,7 +7,9 @@ project(week00)
 add_executable(${PROJECT_NAME}
     src/main.cpp
 
-    #    src/game/game.cpp
+    src/game/game.cpp
+    src/game/rts/handler.cpp
+    src/game/rts/mob/handler.cpp
 
     src/splash/splash.cpp
 )

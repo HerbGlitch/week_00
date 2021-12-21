@@ -1,10 +1,19 @@
 #include "game.hpp"
 
 namespace tbyte {
-    Game::Game(){}
-    Game::~Game(){}
+    Game::Game(){
+        rtsHandler = new rts::Handler();
+    }
 
-    void Game::update(){}
-    void Game::render(){}
+    Game::~Game(){
+        delete rtsHandler;
+    }
 
+    void Game::update(){
+        rtsHandler->update();
+    }
+
+    void Game::render(){
+        rtsHandler->render();
+    }
 }

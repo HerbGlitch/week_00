@@ -6,13 +6,13 @@ namespace tbyte{
         ge::data->config.setGroup("");
 
         SDL_Texture *tbyteSheet;
+        ge::data->config.get(GE_VAR_STR(tbyteSheet));
 
-        ge::Config->get(GE_VAR_STR(tbyteSheet))
-
+        logo = new ge::Entity(tbyteSheet, ge::EntityStrs { .bounds = "tbyteBounds", .scale = "scale" });
         // logo = new ge::Sprite(tbyteSheet, tbyteBounds, ge::data->windowSize.w / 2 - (tbyteBounds.w * scale / 2), ge::data->windowSize.h / 2 - (tbyteBounds.h * scale / 2));
         // logo->setScale(scale);
 
-        // add((ge::Object *)logo);
+        add((ge::Object *)logo);
     }
 
     Splash::~Splash(){}

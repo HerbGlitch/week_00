@@ -3,14 +3,15 @@
 
 namespace tbyte {
     namespace rts {
-        class Mob : ge::Entity {
+        class Mob : public ge::Entity {
         public:
-            Mob(SDL_Texture *spritesheet, int id, int maxHealth, int health, int xp, int range);
-            virtual ~Mob();
+            Mob(SDL_Texture *spritesheet, int id, int maxHealth, int health, int xp, int range): ge::Entity(spritesheet, ge::EntityStrs {.bounds = "allyBounds", .scale = "scale"}){}
+            virtual ~Mob(){}
 
-            void update();
+            virtual void update(){}
+
         protected:
-            int id, maxHealth, health, xp, range;            
-        }
+            int id, maxHealth, health, xp, range; 
+        };
     }
 }

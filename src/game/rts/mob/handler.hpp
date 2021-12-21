@@ -4,15 +4,17 @@
 
 namespace tbyte {
     namespace rts {
-        class MobHandler {
-        public:
-            MobHandler();
-            ~MobHandler();
+        namespace mob {
+            class Handler : public ge::State {
+            public:
+                Handler();
+                ~Handler();
 
-            void update();
-        private:
-            SDL_Texture *spritsheet;
+                void update();
 
+            private:
+                SDL_Texture *spritesheet;
+            };
         }
     }
 }

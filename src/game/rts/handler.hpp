@@ -9,10 +9,11 @@ namespace tbyte {
             Handler();
             ~Handler();
 
-            void update :
+            void update();
+            void render();
 
         private:
-            MobHandler *mobHandler;
-        }
+            rts::mob::Handler *mobHandler;
+        };
     }
 }
