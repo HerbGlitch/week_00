@@ -1,5 +1,8 @@
 #include "handler.hpp"
 
+#include <stdint.h>
+#include <stdio.h>
+
 namespace tbyte {
     namespace rts {
         Handler::Handler(){

@@ -5,7 +5,7 @@ namespace tbyte {
     namespace rts {
         class Mob : public ge::Entity {
         public:
-            Mob(SDL_Texture *spritesheet, int id, int maxHealth, int health, int xp, int range): ge::Entity(spritesheet, ge::EntityStrs {.bounds = "allyBounds", .scale = "scale"}){}
+            Mob(SDL_Texture *spritesheet, const char *bounds, int id, int maxHealth, int health, int xp, int range, SDL_Point pos): ge::Entity(spritesheet, ge::EntityStrs { .bounds = bounds, .scale = "scale" }, pos){}
             virtual ~Mob(){}
 
             virtual void update(){}

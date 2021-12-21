@@ -9,7 +9,35 @@ namespace tbyte {
 
                 ge::data->config.get(GE_VAR_STR(spritesheet));
 
-                add(new Mob(spritesheet, 1, 100, 100, 0, 32));
+                ge::ColorGrid tempMap;
+                ge::data->config.get(GE_VAR_STR(tempMap));
+
+                int scale;
+                ge::data->config.get(GE_VAR_STR(scale));
+
+                for(int y = 0; y < tempMap.h; y++){
+                    for(int x = 0; x < tempMap.w; x++){
+                        unsigned int c = tempMap.colors[x + (y * tempMap.w)];
+
+                        if(c == 0xff0000){ printf("r");}
+                        else if(c == 0x00ff00){ printf("g"); }
+                        else if(c == 0x0000ff){ printf("b"); }
+                        else { printf(" "); }
+
+                        if(c == 0xff0000){
+                            add(new Mob(spritesheet, "wallBounds", 1, 100, 100, 0, 32, SDL_Point { x * 32 * scale, y * 32 * scale }));
+                            continue;
+                        }
+                        if(c == 0x00ff00){
+                            add(new Mob(spritesheet, "pathBounds", 1, 100, 100, 0, 32, SDL_Point { x * 32 * scale, y * 32 * scale }));
+                            continue;
+                        }
+                        if(c == 0x0000ff){
+                            add(new Mob(spritesheet, "stairsBounds", 1, 100, 100, 0, 32, SDL_Point { x * 32 * scale, y * 32 * scale }));
+                        }
+                    }
+                    printf("\n");
+                }
             }
 
             Handler::~Handler(){
@@ -18,7 +46,7 @@ namespace tbyte {
 
             void Handler::update() {
                 for(ge::Object *object : hTypes){
-                    ((Mob *)object)->move(0.01f, 0.00f);
+                    ((Mob *)object)->move(0.00f, -0.01f);
                 }
             }
         }
