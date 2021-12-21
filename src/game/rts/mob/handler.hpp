@@ -14,6 +14,9 @@ namespace tbyte {
 
             private:
                 SDL_Texture *spritesheet;
+
+                float speed;
+                float current;
             };
         }
     }

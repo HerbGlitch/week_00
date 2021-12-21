@@ -3,7 +3,7 @@
 namespace tbyte {
     namespace rts {
         namespace mob {
-            Handler::Handler(){
+            Handler::Handler(): speed(0.007f), current(0.0f){
                 ge::data->config.load("./res/config/defaults.config");
                 ge::data->config.setGroup("");
 
@@ -45,8 +45,10 @@ namespace tbyte {
             }
 
             void Handler::update() {
-                for(ge::Object *object : hTypes){
-                    ((Mob *)object)->move(0.00f, -0.01f);
+                current += speed;
+                if(current > 1.0f){
+                    offset.y -= 1.0f;
+                    current -= 1.0f;
                 }
             }
         }
