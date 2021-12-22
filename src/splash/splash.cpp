@@ -8,16 +8,18 @@ namespace tbyte{
         SDL_Texture *tbyteSheet;
         ge::data->config.get(GE_VAR_STR(tbyteSheet));
 
-        logo = new ge::Entity(tbyteSheet, ge::EntityStrs { .bounds = "tbyteBounds", .scale = "scale" });
+        logo = new ge::Sprite(ge::data->config.createSpriteParams(tbyteSheet, ge::SpriteStrs { .bounds = "tbyteBounds", .scale = "scale" }));
         // logo = new ge::Sprite(tbyteSheet, tbyteBounds, ge::data->windowSize.w / 2 - (tbyteBounds.w * scale / 2), ge::data->windowSize.h / 2 - (tbyteBounds.h * scale / 2));
         // logo->setScale(scale);
 
-        add((ge::Object *)logo);
+        add(logo);
     }
 
     Splash::~Splash(){}
 
     void Splash::update(){
-        //TODO: change after x seconds, and if ___.config is created, allow skip by esc press
+        // if (ge::data->mouse[SDL_BUTTON_LEFT]) {
+        //     ge::data->state.add(tbyte::Game, true);
+        // }
     }
 }

@@ -1,49 +1,43 @@
 #include "handler.hpp"
+#include "../../ui/ui.hpp"
 
 namespace tbyte {
     namespace rts {
         namespace mob {
-            Handler::Handler(): speed(0.007f), current(0.0f){
-                ge::data->config.load("./res/config/defaults.config");
-                ge::data->config.setGroup("");
+            Handler::Handler(ge::Surface **states): states(states), speed(0.007f), current(0.0f){
+            }
 
-                ge::data->config.get(GE_VAR_STR(spritesheet));
+            Handler::~Handler(){
+                // SDL_DestroyTexture(spritesheet);
+            }
 
-                ge::ColorGrid tempMap;
-                ge::data->config.get(GE_VAR_STR(tempMap));
+            void Handler::update() {
+                ui::Handler *uiHandler = (ui::Handler *)states + 2;
+                ge::Handler<ge::Sprite>::update();
 
-                int scale;
-                ge::data->config.get(GE_VAR_STR(scale));
+                if (ge::data->keyboard.getRelease(SDLK_1)) {
+                    spawnUnit();
+                }
+                if(uiHandler->getShouldUpdate()){
 
-                for(int y = 0; y < tempMap.h; y++){
-                    for(int x = 0; x < tempMap.w; x++){
-                        unsigned int c = tempMap.colors[x + (y * tempMap.w)];
+                    // check if units are in selector area
 
-                        if(c == 0xff0000){
-                            add(new Mob(spritesheet, "wallBounds", 1, 100, 100, 0, 32, SDL_Point { x * 32 * scale, y * 32 * scale }));
-                            continue;
-                        }
-                        if(c == 0x00ff00){
-                            add(new Mob(spritesheet, "pathBounds", 1, 100, 100, 0, 32, SDL_Point { x * 32 * scale, y * 32 * scale }));
-                            continue;
-                        }
-                        if(c == 0x0000ff){
-                            add(new Mob(spritesheet, "stairsBounds", 1, 100, 100, 0, 32, SDL_Point { x * 32 * scale, y * 32 * scale }));
-                        }
+                    for(ge::Sprite *object : hTypes){
+                        ((Soldier *)object)->startMove(uiHandler->movePoint.x, uiHandler->movePoint.y);
                     }
                 }
             }
 
-            Handler::~Handler(){
-                SDL_DestroyTexture(spritesheet);
-            }
+            void Handler::spawnUnit(){
+                ge::data->config.setGroup("");
 
-            void Handler::update() {
-                // current += speed;
-                // if(current > 1.0f){
-                //     offset.y -= 1.0f;
-                //     current -= 1.0f;
-                // }
+                ge::data->config.get(GE_VAR_STR(spritesheet));
+
+                int scale;
+                ge::data->config.get(GE_VAR_STR(scale));
+
+                add(new Soldier(spritesheet, "allyBounds", SDL_Point { ge::data->mouse.x, ge::data->mouse.y }));
+
             }
         }
     }

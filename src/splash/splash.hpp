@@ -2,7 +2,7 @@
 #include <ge.hpp>
 
 namespace tbyte {
-    class Splash : public ge::State {
+    class Splash : public ge::Surface {
     public:
         Splash();
         ~Splash();
@@ -12,6 +12,6 @@ namespace tbyte {
     private:
         SDL_Texture *tbyteSheet;
 
-        ge::Entity *logo;
+        ge::Sprite *logo;
     };
 }

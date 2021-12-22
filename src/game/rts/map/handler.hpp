@@ -1,19 +1,15 @@
 #pragma once
 #include <ge.hpp>
-#include "mob.hpp"
-#include "soldier.hpp"
 
 namespace tbyte {
     namespace rts {
-        namespace mob {
-            class Handler : public ge::Grid {
+        namespace map {
+            class Handler : public ge::Surface {
             public:
                 Handler(ge::Surface **states);
                 ~Handler();
 
                 void update();
-
-                void spawnUnit();
 
             private:
                 SDL_Texture *spritesheet;

@@ -9,7 +9,14 @@ add_executable(${PROJECT_NAME}
 
     src/game/game.cpp
     src/game/rts/handler.cpp
+
     src/game/rts/mob/handler.cpp
+    src/game/rts/mob/soldier.cpp
+
+    src/game/rts/map/handler.cpp
+
+    src/game/ui/ui.cpp
+    src/game/ui/selector/selector.cpp
 
     src/splash/splash.cpp
 )

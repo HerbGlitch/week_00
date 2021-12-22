@@ -1,17 +1,21 @@
 #pragma once
 #include <ge.hpp>
+#include <vector>
 
 namespace tbyte {
     namespace rts {
-        class Mob : public ge::Entity {
+        class Mob : public ge::Sprite {
         public:
-            Mob(SDL_Texture *spritesheet, const char *bounds, int id, int maxHealth, int health, int xp, int range, SDL_Point pos): ge::Entity(spritesheet, ge::EntityStrs { .bounds = bounds, .scale = "scale" }, pos){}
+            Mob(SDL_Texture *spritesheet, const char *bounds, SDL_Point pos): Sprite(ge::data->config.createSpriteParams(spritesheet, ge::SpriteStrs { .bounds = bounds, .scale = "scale" }, pos)){}
             virtual ~Mob(){}
 
             virtual void update(){}
 
-        protected:
-            int id, maxHealth, health, xp, range; 
         };
+
+        typedef struct MobGroup {
+            unsigned int id;
+            std::vector<Mob *> mobs;
+        } MobGroup;
     }
 }

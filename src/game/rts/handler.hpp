@@ -1,10 +1,12 @@
 #pragma once
 #include <ge.hpp>
 #include "./mob/handler.hpp"
+#include "./map/handler.hpp"
+#include "../ui/ui.hpp"
 
 namespace tbyte {
     namespace rts {
-        class Handler : ge::State {
+        class Handler : public ge::State {
         public:
             Handler();
             ~Handler();
@@ -13,7 +15,7 @@ namespace tbyte {
             void render();
 
         private:
-            rts::mob::Handler *mobHandler;
+            ge::Surface *states[3];
         };
     }
 }

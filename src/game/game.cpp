@@ -2,10 +2,14 @@
 
 namespace tbyte {
     Game::Game(){
+        ge::data->config.load("./res/config/defaults.config");
+
+
         rtsHandler = new rts::Handler();
     }
 
     Game::~Game(){
+        // ge::data->config.unload("./res/config/defaults.config");
         delete rtsHandler;
     }
 
