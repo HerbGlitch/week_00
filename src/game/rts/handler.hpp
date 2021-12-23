@@ -6,10 +6,10 @@
 
 namespace tbyte {
     namespace rts {
-        public struct Surfaces {
-            map::Handler *mapHandler;
-            mob::Handler *mobHandler;
-            ui::Handler *uiHandler;
+        struct Surfaces {
+            map::Handler mapHandler;
+            mob::Handler mobHandler;
+            ui::Handler uihandler;
         };
         class Handler : public ge::State {
         public:
@@ -20,7 +20,7 @@ namespace tbyte {
             void render();
 
         private:
-            Surfaces surfaces;
+            Surfaces *surfaces;
         };
     }
 }

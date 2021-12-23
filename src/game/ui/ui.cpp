@@ -1,8 +1,9 @@
 #include "ui.hpp"
+#include "../rts/handler.hpp"
 
 namespace tbyte {
     namespace ui {
-        Handler::Handler(): selector(nullptr), shouldUpdate(false){}
+        Handler::Handler(Surfaces *surfaces): surfaces(surfaces), selector(nullptr), shouldUpdate(false){}
 
         Handler::~Handler(){
             if(selector){ delete selector; }

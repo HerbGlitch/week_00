@@ -3,17 +3,18 @@
 
 namespace tbyte {
     namespace rts {
+        struct Surfaces;
         namespace map {
             class Handler : public ge::Surface {
             public:
-                Handler(rts::Surfaces states);
+                Handler(Surfaces *surfaces);
                 ~Handler();
 
                 void update();
 
             private:
                 SDL_Texture *spritesheet;
-                ge::Surface states;
+                Surfaces *surfaces;
 
                 float speed;
                 float current;

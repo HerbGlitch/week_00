@@ -1,10 +1,11 @@
 #include "handler.hpp"
 #include "../../ui/ui.hpp"
+#include "../handler.hpp"
 
 namespace tbyte {
     namespace rts {
         namespace mob {
-            Handler::Handler(ge::Surface *states): states(states), speed(0.007f), current(0.0f){
+            Handler::Handler(Surfaces *surfaces): surfaces(surfaces), speed(0.007f), current(0.0f){
             }
 
             Handler::~Handler(){

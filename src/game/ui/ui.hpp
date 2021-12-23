@@ -6,9 +6,12 @@
 
 namespace tbyte {
     namespace ui {
+        namespace rts {
+            struct Surfaces;
+        }
         class Handler : public ge::Surface {
         public:
-            Handler();
+            Handler(rts::Surfaces *surfaces);
             ~Handler();
 
             void update();
@@ -24,6 +27,8 @@ namespace tbyte {
             SDL_Rect selectedArea;
 
         protected:
+            Surfaces *surfaces;
+
             std::vector<rts::MobGroup> movementGroups;
 
             bool shouldUpdate;

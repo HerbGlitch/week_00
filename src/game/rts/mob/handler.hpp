@@ -5,10 +5,11 @@
 
 namespace tbyte {
     namespace rts {
+        struct Surfaces;
         namespace mob {
             class Handler : public ge::Grid {
             public:
-                Handler(rts::Surfaces surfaces);
+                Handler(Surfaces *surfaces);
                 ~Handler();
 
                 void update();
@@ -17,7 +18,7 @@ namespace tbyte {
 
             private:
                 SDL_Texture *spritesheet;
-                rts::Surfaces **states;
+                Surfaces *surfaces;
 
                 float speed;
                 float current;
