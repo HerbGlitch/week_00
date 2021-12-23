@@ -1,5 +1,5 @@
 #pragma once
-#include <ge.hpp>
+#include <ge/ge>
 
 namespace tbyte {
     class Splash : public ge::Surface {

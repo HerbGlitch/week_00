@@ -1,5 +1,5 @@
 #pragma once
-#include <ge.hpp>
+#include <ge/ge>
 #include "mob.hpp"
 #include "soldier.hpp"
 

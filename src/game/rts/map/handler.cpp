@@ -10,15 +10,15 @@ namespace tbyte {
 
                 ge::data->config.get(GE_VAR_STR(spritesheet));
 
-                ge::ColorGrid tempMap;
+                ge::ColorGrid *tempMap;
                 ge::data->config.get(GE_VAR_STR(tempMap));
 
                 int scale;
                 ge::data->config.get(GE_VAR_STR(scale));
 
-                for (int y = 0; y < tempMap.h; y++) {
-                    for (int x = 0; x < tempMap.w; x++) {
-                        unsigned int c = tempMap.colors[x + (y * tempMap.w)];
+                for (int y = 0; y < tempMap->h; y++) {
+                    for (int x = 0; x < tempMap->w; x++) {
+                        unsigned int c = tempMap->colors[x + (y * tempMap->w)];
 
                         if (c == 0xff0000) {
                             add(new Mob(spritesheet, "wallBounds", SDL_Point{x * 32 * scale, y * 32 * scale}));

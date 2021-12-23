@@ -1,5 +1,5 @@
 #pragma once
-#include <ge.hpp>
+#include <ge/ge>
 #include <vector>
 
 namespace tbyte {

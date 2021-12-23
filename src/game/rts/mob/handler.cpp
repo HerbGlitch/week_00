@@ -14,19 +14,19 @@ namespace tbyte {
 
             void Handler::update() {
                 ui::Handler *uiHandler = surfaces->uiHandler;
-                ge::Handler<ge::Sprite>::update();
+                ge::Handler<ge::Entity>::update();
 
-                if (ge::data->keyboard.getPress(SDLK_1)){
+                if (ge::data->keyboard.getRelease(SDLK_1)){
                     spawnUnit();
                 }
                 if(uiHandler->getShouldUpdate()){
                     SDL_Rect selectorArea = uiHandler->getSelectedArea();
                     // check if units are in selector area
-                    for(ge::Sprite *object : hTypes){
-                        bool selected = SDL_HasIntersection(&selectorArea, &object->getPos());
-                        ((Soldier *)object)->setSelected(selected);
+                    for(ge::Entity *entity : hTypes){
+                        bool selected = ((ge::Sprite *)entity)->collides(selectorArea);
+                        ((Soldier *)entity)->setSelected(selected);
                         if(selected){
-                            ((Soldier *)object)->startMove(uiHandler->movePoint.x, uiHandler->movePoint.y);
+                            ((Soldier *)entity)->startMove(uiHandler->movePoint.x, uiHandler->movePoint.y);
                         }
                     }
                 }

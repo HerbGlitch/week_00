@@ -1,5 +1,5 @@
 #pragma once
-#include <ge.hpp>
+#include <ge/ge>
 #include "./mob/handler.hpp"
 #include "./map/handler.hpp"
 #include "../ui/ui.hpp"
