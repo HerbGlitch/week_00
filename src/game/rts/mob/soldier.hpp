@@ -14,6 +14,8 @@ namespace tbyte {
 
                 void startMove(int targetX, int targetY);
 
+                void setSelected(bool val);
+
             private:
                 bool moving;
                 SDL_Point target;

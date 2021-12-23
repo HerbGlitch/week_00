@@ -6,20 +6,29 @@
 namespace tbyte {
     namespace rts {
         Handler::Handler(){
-            surfaces->mapHandler = map::Handler(surfaces);
-            surfaces->mobHandler = mob::Handler(surfaces);
-            surfaces->uihandler = ui::Handler(surfaces);
+            surfaces = new Surfaces;
+            surfaces->mapHandler = new map::Handler(surfaces);
+            surfaces->mobHandler = new mob::Handler(surfaces);
+            surfaces->uiHandler = new ui::Handler(surfaces);
         }
 
         Handler::~Handler(){
+            delete surfaces->mapHandler;
+            delete surfaces->mobHandler;
+            delete surfaces->uiHandler;
+            delete surfaces;
         }
 
         void Handler::update(){
-            for(int i = 0; i < 3; i++){ surfaces[i]->update(); }
+            surfaces->mapHandler->update();
+            surfaces->mobHandler->update();
+            surfaces->uiHandler->update();
         }
 
         void Handler::render(){
-            for(int i = 0; i < 3; i++){ surfaces[i]->render(); }
+            surfaces->mapHandler->render();
+            surfaces->mobHandler->render();
+            surfaces->uiHandler->render();
         }
     }
 }

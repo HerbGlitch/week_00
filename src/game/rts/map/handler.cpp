@@ -6,10 +6,38 @@ namespace tbyte {
     namespace rts {
         namespace map {
             Handler::Handler(Surfaces *surfaces): surfaces(surfaces), speed(0.01f), current(0.0f) {
+                ge::data->config.setGroup("");
 
+                ge::data->config.get(GE_VAR_STR(spritesheet));
+
+                ge::ColorGrid tempMap;
+                ge::data->config.get(GE_VAR_STR(tempMap));
+
+                int scale;
+                ge::data->config.get(GE_VAR_STR(scale));
+
+                for (int y = 0; y < tempMap.h; y++) {
+                    for (int x = 0; x < tempMap.w; x++) {
+                        unsigned int c = tempMap.colors[x + (y * tempMap.w)];
+
+                        if (c == 0xff0000) {
+                            add(new Mob(spritesheet, "wallBounds", SDL_Point{x * 32 * scale, y * 32 * scale}));
+                            continue;
+                        }
+                        if (c == 0x00ff00) {
+                            add(new Mob(spritesheet, "pathBounds", SDL_Point{x * 32 * scale, y * 32 * scale}));
+                            continue;
+                        }
+                        if (c == 0x0000ff) {
+                            add(new Mob(spritesheet, "stairsBounds", SDL_Point{x * 32 * scale, y * 32 * scale}));
+                        }
+                    }
+                }
             }
 
-            Handler::~Handler() { SDL_DestroyTexture(spritesheet); }
+            Handler::~Handler() { 
+                SDL_DestroyTexture(spritesheet); 
+            }
 
             void Handler::update() {
                 if (ge::data->keyboard[SDLK_w]) {

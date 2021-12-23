@@ -7,9 +7,9 @@
 namespace tbyte {
     namespace rts {
         struct Surfaces {
-            map::Handler mapHandler;
-            mob::Handler mobHandler;
-            ui::Handler uihandler;
+            map::Handler *mapHandler;
+            mob::Handler *mobHandler;
+            ui::Handler *uiHandler;
         };
         class Handler : public ge::State {
         public:

@@ -3,7 +3,7 @@
 
 namespace tbyte {
     namespace ui {
-        Handler::Handler(Surfaces *surfaces): surfaces(surfaces), selector(nullptr), shouldUpdate(false){}
+        Handler::Handler(rts::Surfaces *surfaces): surfaces(surfaces), selector(nullptr), shouldUpdate(false){}
 
         Handler::~Handler(){
             if(selector){ delete selector; }
@@ -47,5 +47,7 @@ namespace tbyte {
         }
 
         bool Handler::getShouldUpdate(){ return shouldUpdate; }
+
+        SDL_Rect Handler::getSelectedArea() { return selectedArea; }
     }
 }

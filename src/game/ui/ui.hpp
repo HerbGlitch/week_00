@@ -5,10 +5,10 @@
 #include "./selector/selector.hpp"
 
 namespace tbyte {
+    namespace rts {
+        struct Surfaces;
+    }
     namespace ui {
-        namespace rts {
-            struct Surfaces;
-        }
         class Handler : public ge::Surface {
         public:
             Handler(rts::Surfaces *surfaces);
@@ -23,13 +23,15 @@ namespace tbyte {
 
             bool getShouldUpdate();
 
+            SDL_Rect getSelectedArea();
+
             SDL_Point movePoint;
             SDL_Rect selectedArea;
 
         protected:
-            Surfaces *surfaces;
+            rts::Surfaces *surfaces;
 
-            std::vector<rts::MobGroup> movementGroups;
+            // std::vector<rts::MobGroup> movementGroups;
 
             bool shouldUpdate;
 

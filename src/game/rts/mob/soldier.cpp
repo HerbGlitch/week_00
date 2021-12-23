@@ -14,16 +14,24 @@ namespace tbyte {
 
             void Soldier::update() {
                 if(moving){
-                    moveTo(target, 0.7);
+                    if(getPos().x == target.x && getPos().y == target.y){
+                        moving = false;
+                        return;
+                    }
+                    moveTo(target, 1.0);
                 }
+            }
+
+            void Soldier::setSelected(bool val) {
+                selected = val;
             }
 
             void Soldier::startMove(int targetX, int targetY) {
                 if(!selected){ return; }
 
-                float b = targetX - bounds.x;
-                float a = targetY - bounds.y;
-                float dist = sqrt(a * a + b * b);
+                // float b = targetX - bounds.x;
+                // float a = targetY - bounds.y;
+                // float dist = sqrt(a * a + b * b);
                 target = {targetX, targetY};
                 moving = true;
             }
