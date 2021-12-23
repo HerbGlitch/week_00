@@ -5,7 +5,7 @@
 namespace tbyte {
     namespace rts {
         namespace map {
-            Handler::Handler(ge::Surface **states): states(states), speed(0.01f), current(0.0f) {
+            Handler::Handler(rts::Surfaces states): states(states), speed(0.01f), current(0.0f) {
                 ge::data->config.setGroup("");
 
                 ge::data->config.get(GE_VAR_STR(spritesheet));

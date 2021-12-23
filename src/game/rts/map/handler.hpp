@@ -6,14 +6,14 @@ namespace tbyte {
         namespace map {
             class Handler : public ge::Surface {
             public:
-                Handler(ge::Surface **states);
+                Handler(rts::Surfaces states);
                 ~Handler();
 
                 void update();
 
             private:
                 SDL_Texture *spritesheet;
-                ge::Surface **states;
+                ge::Surface states;
 
                 float speed;
                 float current;

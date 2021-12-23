@@ -8,7 +8,7 @@ namespace tbyte {
         namespace mob {
             class Handler : public ge::Grid {
             public:
-                Handler(ge::Surface **states);
+                Handler(rts::Surfaces surfaces);
                 ~Handler();
 
                 void update();
@@ -17,7 +17,7 @@ namespace tbyte {
 
             private:
                 SDL_Texture *spritesheet;
-                ge::Surface **states;
+                rts::Surfaces **states;
 
                 float speed;
                 float current;

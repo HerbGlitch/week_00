@@ -4,7 +4,7 @@
 namespace tbyte {
     namespace rts {
         namespace mob {
-            Handler::Handler(ge::Surface **states): states(states), speed(0.007f), current(0.0f){
+            Handler::Handler(ge::Surface *states): states(states), speed(0.007f), current(0.0f){
             }
 
             Handler::~Handler(){
