@@ -3,6 +3,7 @@
 #include <vector>
 #include "../rts/mob/soldier.hpp"
 #include "./selector/selector.hpp"
+#include "data.hpp"
 
 namespace tbyte {
     namespace rts {
@@ -25,17 +26,16 @@ namespace tbyte {
 
             SDL_Rect getSelectedArea();
 
-            SDL_Point movePoint;
-            SDL_Rect selectedArea;
+            Data *getData();
 
         protected:
             rts::Surfaces *surfaces;
 
-            // std::vector<rts::MobGroup> movementGroups;
-
             bool shouldUpdate;
 
             Selector *selector;
+            Data *data;
+
         };
     }
 }
