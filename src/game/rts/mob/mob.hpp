@@ -1,6 +1,7 @@
 #pragma once
 #include <ge/ge>
 #include <vector>
+#include <queue>
 
 namespace tbyte {
     namespace rts {
@@ -13,9 +14,11 @@ namespace tbyte {
 
         };
 
-        typedef struct MobGroup {
+        struct MobGroup {
             unsigned int id;
+            std::queue<SDL_Point> coords;
+            SDL_Point current;
             std::vector<Mob *> mobs;
-        } MobGroup;
+        };
     }
 }

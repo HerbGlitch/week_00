@@ -14,12 +14,19 @@ namespace tbyte {
 
                 void startMove(int targetX, int targetY);
 
+                void setMoving(bool newMoving);
+
                 void setSelected(bool val);
 
-            private:
-                bool moving;
-                SDL_Point target;
+                bool getSelected();
+
                 bool selected;
+                bool moving;
+            
+            private:
+                SDL_Point moveTarget;
+                SDL_Rect idleBounds; 
+                SDL_Rect selectedBounds; 
             };
         }
     }

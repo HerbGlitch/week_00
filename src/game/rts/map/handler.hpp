@@ -17,7 +17,7 @@ namespace tbyte {
                 Surfaces *surfaces;
 
                 float speed;
-                float current;
+                float currentX, currentY;
             };
         }
     }

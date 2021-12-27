@@ -4,8 +4,9 @@
 namespace tbyte {
     namespace rts {
         namespace mob {
-            Soldier::Soldier(SDL_Texture *spritesheet, const char *bounds, SDL_Point pos): Mob(spritesheet, bounds, pos), moving(false), target({0,0}), selected(false){
-
+            Soldier::Soldier(SDL_Texture *spritesheet, const char *bounds, SDL_Point pos): Mob(spritesheet, bounds, pos), moving(false), moveTarget({0, 0}), selected(false){
+                ge::data->config.get("allyBounds", idleBounds);
+                ge::data->config.get("enemyBounds", selectedBounds);
             }
             
             Soldier::~Soldier(){
@@ -13,12 +14,19 @@ namespace tbyte {
             }
 
             void Soldier::update() {
-                if(moving){
-                    if(getPos().x == target.x && getPos().y == target.y){
+                if(!selected) {
+                    bounds = idleBounds;
+                }
+                else{
+                    bounds = selectedBounds;
+                }
+                if(moving && moveTarget.x != 0 && moveTarget.y != 0){
+                    if(getCenter().x == moveTarget.x && getCenter().y == moveTarget.y){
                         moving = false;
+                        moveTarget = {0, 0};
                         return;
                     }
-                    moveTo(target, 1.0);
+                    moveTo(moveTarget, 1.0);
                 }
             }
 
@@ -28,13 +36,15 @@ namespace tbyte {
 
             void Soldier::startMove(int targetX, int targetY) {
                 if(!selected){ return; }
-
-                // float b = targetX - bounds.x;
-                // float a = targetY - bounds.y;
-                // float dist = sqrt(a * a + b * b);
-                target = {targetX, targetY};
+                moveTarget = {targetX - center.x, targetY - center.y};
                 moving = true;
             }
+
+            void Soldier::setMoving(bool newMoving){
+                moving = newMoving;
+            }
+
+            bool Soldier::getSelected(){ return selected; }
         }
     }
 }
