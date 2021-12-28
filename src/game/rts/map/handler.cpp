@@ -49,34 +49,34 @@ namespace tbyte {
             Handler::~Handler(){ }
 
             void Handler::update(){
-                // if (ge::data->keyboard.getPress(SDLK_w)) {
-                //     currentY += speed;
-                //     if (currentY > 1.0f) {
-                //         offset.y += 1.0f;
-                //         currentY -= 1.0f;
-                //     }
-                // }
-                // if (ge::data->keyboard.getPress(SDLK_s)) {
-                //     currentY -= speed;
-                //     if (currentY < -1.0f) {
-                //         offset.y -= 1.0f;
-                //         currentY += 1.0f;
-                //     }
-                // }
-                // if (ge::data->keyboard.getPress(SDLK_d)) {
-                //     currentX -= speed;
-                //     if (currentX < -1.0f) {
-                //         offset.x -= 1.0f;
-                //         currentX += 1.0f;
-                //     }
-                // }
-                // if(ge::data->keyboard.getPress(SDLK_a)) {
-                //     currentX += speed;
-                //     if(currentX > 1.0f){
-                //         offset.x += 1.0f;
-                //         currentX -= 1.0f;
-                //     }
-                // }
+                if (ge::data->keyboard.getPress(SDLK_w)) {
+                    currentY += speed;
+                    if (currentY > 1.0f) {
+                        offset.y += 1.0f;
+                        currentY -= 1.0f;
+                    }
+                }
+                if (ge::data->keyboard.getPress(SDLK_s)) {
+                    currentY -= speed;
+                    if (currentY < -1.0f) {
+                        offset.y -= 1.0f;
+                        currentY += 1.0f;
+                    }
+                }
+                if (ge::data->keyboard.getPress(SDLK_d)) {
+                    currentX -= speed;
+                    if (currentX < -1.0f) {
+                        offset.x -= 1.0f;
+                        currentX += 1.0f;
+                    }
+                }
+                if(ge::data->keyboard.getPress(SDLK_a)) {
+                    currentX += speed;
+                    if(currentX > 1.0f){
+                        offset.x += 1.0f;
+                        currentX -= 1.0f;
+                    }
+                }
             }
         }  // namespace map
     }  // namespace rts
