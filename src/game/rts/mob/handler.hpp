@@ -1,10 +1,9 @@
 #pragma once
 #include <ge/ge>
+#include "group.hpp"
 #include "mob.hpp"
 #include "soldier.hpp"
 #include "../../ui/data.hpp"
-#include <vector>
-#include <math.h>
 
 namespace tbyte {
     namespace rts {
@@ -12,22 +11,22 @@ namespace tbyte {
         namespace mob {
             class Handler : public ge::Grid {
             public:
-                Handler(Surfaces *surfaces);
+                Handler(Surfaces *surfaces, ui::Data *uiData);
                 ~Handler();
 
                 void update();
 
                 void spawnUnit();
 
-                void getcoordsFromGroup();
-
-                SDL_Point getAvailableSpace(int numUnits);
+                void groupMove(Group group);
 
             private:
                 SDL_Texture *spritesheet;
                 Surfaces *surfaces;
 
-                MobGroup *mGroup;
+                ui::Data *uiData;
+
+                Group *mGroup;
 
                 float speed;
                 float current;

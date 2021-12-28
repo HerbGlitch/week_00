@@ -11,6 +11,7 @@ namespace tbyte {
             mob::Handler *mobHandler;
             ui::Handler *uiHandler;
         };
+
         class Handler : public ge::State {
         public:
             Handler();

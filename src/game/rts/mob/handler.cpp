@@ -5,13 +5,13 @@
 namespace tbyte {
     namespace rts {
         namespace mob {
-            Handler::Handler(Surfaces *surfaces): surfaces(surfaces), speed(0.007f), current(0.0f){
+            Handler::Handler(Surfaces *surfaces, ui::Data *uiData): surfaces(surfaces), uiData(uiData), speed(0.007f), current(0.0f){
             }
 
             Handler::~Handler(){
-                if(mGroup) { 
-                    delete mGroup;
-                }
+                // if(mGroup) { 
+                //     delete mGroup;
+                // }
             }
 
             void Handler::update(){
@@ -22,65 +22,49 @@ namespace tbyte {
                     spawnUnit();
                 }
 
-                for(ge::Entity *entity : hTypes){
-                    Soldier *soldier = ((Soldier *)entity);
-                    if(soldier->moving){
-                        for(ge::Entity *sol : hTypes){
-                            Soldier *colSoldier = ((Soldier *)sol);
-                            if(colSoldier != soldier) {
-                                if(soldier->collides(colSoldier->getPos())){
-                                    // soldier->setMoving(false);
-                                }
-                            }
-                        }
-                    }
-                }
+                // for(ge::Entity *entity : hTypes){
+                //     Soldier *soldier = ((Soldier *)entity);
+                //     if(soldier->getMoving()){
+                //         for(ge::Entity *sol : hTypes){
+                //             Soldier *colSoldier = ((Soldier *)sol);
+                //             if(colSoldier != soldier) {
+                //                 if(soldier->collides(colSoldier->getBounds())){
+                //                     // soldier->setMoving(false);
+                //                 }
+                //             }
+                //         }
+                //     }
+                // }
+
+
                 
-                if(uiHandler->getShouldUpdate()){
+                if(uiData->mouse.leftReleased){
                     SDL_Rect selectorArea = uiHandler->getSelectedArea();
-                    mGroup = nullptr;
+
+                    if(mGroup){ 
+                        delete mGroup; 
+                    }
+                    mGroup = new Group();
 
                     for(ge::Entity *entity : hTypes){
-                        bool selected = ((ge::Sprite *)entity)->collides(selectorArea);
-                        Soldier *soldier = ((Soldier *)entity);
-                        if(!mGroup){
-                            mGroup = new MobGroup();
-                            mGroup->current = {uiHandler->getData()->movePoint.x, uiHandler->getData()->movePoint.y};
-                        }
-                        soldier->setSelected(selected);
-                        if(selected){
-                            float targetX = mGroup->current.x;
-                            float targetY = mGroup->current.y;
-                            float b = targetX - soldier->getBounds().x;
-                            float a = targetY - soldier->getBounds().y;
-                            float dist = sqrt(a * a + b * b);
-                            auto pos = std::find_if(mGroup->mobs.begin(), mGroup->mobs.end(), [dist, targetX, targetY](auto curEnt) {
-                                float b = targetX - ((Soldier *)curEnt)->getBounds().x;
-                                float a = targetY - ((Soldier *)curEnt)->getBounds().y;
-                                float curDist = sqrt(a * a + b * b);
-                                return curDist < dist;
-                            });
-                            mGroup->mobs.insert(pos, ((Mob *)entity));
+                        if(entity->collides(selectorArea)){
+
+                            ((Soldier *)entity)->setSelected(true);
+                            mGroup->addMob((Mob *)entity);
                         }
                     }
-                    getcoordsFromGroup();
-                }
-            }
 
-            void Handler::getcoordsFromGroup(){
-                ui::Handler *uiHandler = surfaces->uiHandler;
-                float formationWidth = mGroup->mobs.size() * 32;
-                SDL_Point formationBounds = getAvailableSpace(mGroup->mobs.size());
-                float currentX = mGroup->current.x - formationBounds.x / 2;
-                float currentY = mGroup->current.y - formationBounds.y / 2;
-                for(Mob *entity: mGroup->mobs){
-                    ((Soldier *)entity)->startMove(currentX, mGroup->current.y);
-                    currentX += ((Soldier *)entity)->getBounds().w;
+                    if(mGroup->empty()){
+                        delete mGroup;
+                        mGroup = nullptr;
+                    }
                 }
-            }
 
-            SDL_Point Handler::getAvailableSpace(int numUnits) {
-                return { 32 * 4, 32 * 3 };
+                if(uiData->mouse.rightReleased){
+                    mGroup->addCoord({ uiData->mouse.x, uiData->mouse.y });
+                }
+
+                if(mGroup){ mGroup->update(); }
             }
 
             void Handler::spawnUnit(){
@@ -88,10 +72,17 @@ namespace tbyte {
 
                 ge::data->config.get(GE_VAR_STR(spritesheet));
 
-                int scale;
+                GE_Scale *scale;
                 ge::data->config.get(GE_VAR_STR(scale));
 
-                add(new Soldier(spritesheet, "allyBounds", SDL_Point { ge::data->mouse.x, ge::data->mouse.y }));
+                GE_Bounds *solderBounds;
+                ge::data->config.get("player", solderBounds);
+                
+                GE_Sheet *spritesheet;
+                ge::data->config.get(GE_VAR_STR(spritesheet));
+
+                GE_Sprite *sprite = new GE_Sprite { spritesheet, solderBounds };
+                add(new Soldier(sprite, SDL_Point { ge::data->mouse.x, ge::data->mouse.y }, *scale));
             }
         }
     }

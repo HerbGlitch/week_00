@@ -4,30 +4,20 @@
 namespace tbyte {
     namespace rts {
         namespace mob {
-            Soldier::Soldier(SDL_Texture *spritesheet, const char *bounds, SDL_Point pos): Mob(spritesheet, bounds, pos), moving(false), moveTarget({0, 0}), selected(false){
-                ge::data->config.get("allyBounds", idleBounds);
-                ge::data->config.get("enemyBounds", selectedBounds);
+            Soldier::Soldier(GE_Sprite *sprite, SDL_Point pos, GE_Scale &scale): Mob(sprite, pos, scale), moving(false), moveTarget({0, 0}), selected(false){
             }
-            
+
             Soldier::~Soldier(){
 
             }
 
             void Soldier::update() {
-                if(!selected) {
-                    bounds = idleBounds;
-                }
-                else{
-                    bounds = selectedBounds;
-                }
-                if(moving && moveTarget.x != 0 && moveTarget.y != 0){
-                    if(getCenter().x == moveTarget.x && getCenter().y == moveTarget.y){
-                        moving = false;
-                        moveTarget = {0, 0};
-                        return;
-                    }
-                    moveTo(moveTarget, 1.0);
-                }
+                // if(moving){
+                //     moving = moveTo(moveTarget, 1.0);
+                //     if(!moving){
+                //         moveTarget = { 0, 0 };
+                //     }
+                // }
             }
 
             void Soldier::setSelected(bool val) {
@@ -40,9 +30,8 @@ namespace tbyte {
                 moving = true;
             }
 
-            void Soldier::setMoving(bool newMoving){
-                moving = newMoving;
-            }
+            void Soldier::setMoving(bool moving){ this->moving = moving; }
+            bool Soldier::getMoving(){ return moving; }
 
             bool Soldier::getSelected(){ return selected; }
         }

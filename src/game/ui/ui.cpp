@@ -3,8 +3,8 @@
 
 namespace tbyte {
     namespace ui {
-        Handler::Handler(rts::Surfaces *surfaces): surfaces(surfaces), selector(nullptr), shouldUpdate(false){
-            data = new Data();
+        Handler::Handler(rts::Surfaces *surfaces): surfaces(surfaces), selector(nullptr){
+            data = new Data { { -1, -1, 0, 0 }, { 0, 0, false, false } };
         }
 
         Handler::~Handler(){
@@ -23,38 +23,45 @@ namespace tbyte {
 
         void Handler::updateClick() {
             if(ge::data->mouse[SDL_BUTTON_RIGHT] == ge::Mouse::RELEASED){
-                data->movePoint.x = ge::data->mouse.x;
-                data->movePoint.y = ge::data->mouse.y;
-                shouldUpdate = true;
+                data->mouse.x = ge::data->mouse.x;
+                data->mouse.y = ge::data->mouse.y;
+                data->mouse.rightReleased = true;
                 return;
             }
-            shouldUpdate = false;
+            data->mouse.rightReleased = false;
         }
 
         void Handler::updateSelector(){
             if(!selector){
-                if(ge::data->mouse[SDL_BUTTON_LEFT] == ge::Mouse::PRESSED){ selector = new Selector(); }
+                if(ge::data->mouse[SDL_BUTTON_LEFT] == ge::Mouse::PRESSED){
+                    selector = new Selector();
+                    return;
+                }
+                data->mouse.leftReleased = false;
                 return;
             }
 
             if(ge::data->mouse[SDL_BUTTON_LEFT] == ge::Mouse::PRESSED){
                 selector->update();
+                data->mouse.leftReleased = false;
                 return;
             }
 
             if(ge::data->mouse[SDL_BUTTON_LEFT] == ge::Mouse::RELEASED){
                 data->selectedArea = selector->shape();
+                data->mouse.leftReleased = true;
                 delete selector;
                 selector = nullptr;
+                return;
             }
+            
+            data->mouse.leftReleased = false;
         }
 
-        bool Handler::getShouldUpdate(){ return shouldUpdate; }
+        bool Handler::getShouldUpdate(){ return data->mouse.leftReleased; }
 
         SDL_Rect Handler::getSelectedArea() { return data->selectedArea; }
 
-        Data * Handler::getData() {
-            return data;
-        }
+        Data *Handler::getData(){ return data; }
     }
 }

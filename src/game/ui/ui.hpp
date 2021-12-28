@@ -6,9 +6,8 @@
 #include "data.hpp"
 
 namespace tbyte {
-    namespace rts {
-        struct Surfaces;
-    }
+    namespace rts { struct Surfaces; }
+
     namespace ui {
         class Handler : public ge::Surface {
         public:
@@ -31,11 +30,9 @@ namespace tbyte {
         protected:
             rts::Surfaces *surfaces;
 
-            bool shouldUpdate;
-
             Selector *selector;
-            Data *data;
 
+            Data *data;
         };
     }
 }

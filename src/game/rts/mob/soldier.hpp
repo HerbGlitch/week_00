@@ -7,26 +7,24 @@ namespace tbyte {
         namespace mob {
             class Soldier : public Mob {
             public:
-                Soldier(SDL_Texture *spritesheet, const char *bounds, SDL_Point pos);
+                Soldier(GE_Sprite *sprite, SDL_Point pos, GE_Scale &scale);
                 ~Soldier();
 
                 void update();
 
                 void startMove(int targetX, int targetY);
 
-                void setMoving(bool newMoving);
-
+                void setMoving(bool moving);
+                bool getMoving();
                 void setSelected(bool val);
 
                 bool getSelected();
 
-                bool selected;
-                bool moving;
-            
             private:
                 SDL_Point moveTarget;
-                SDL_Rect idleBounds; 
-                SDL_Rect selectedBounds; 
+
+                bool selected;
+                bool moving;
             };
         }
     }

@@ -5,7 +5,10 @@ namespace tbyte {
     namespace ui {
         struct Data {
             SDL_Rect selectedArea;
-            SDL_Point movePoint; 
+            struct {
+                int x, y;
+                bool rightReleased, leftReleased;
+            } mouse;
         };
     }
 }

@@ -9,9 +9,7 @@ namespace tbyte{
         ge::data->config.get(GE_VAR_STR(tbyteLogo));
 
         logo = new ge::Sprite(tbyteLogo);
-        // logo = new ge::Sprite(ge::data->config.createSpriteParams(tbyteSheet, ge::SpriteStrs { .bounds = "tbyteBounds", .scale = "scale" }));
-        // logo = new ge::Sprite(tbyteSheet, tbyteBounds, ge::data->windowSize.w / 2 - (tbyteBounds.w * scale / 2), ge::data->windowSize.h / 2 - (tbyteBounds.h * scale / 2));
-        // logo->setScale(scale);
+        logo->setPos(ge::data->windowSize.w / 2 - logo->getCenter().x, ge::data->windowSize.h / 2 - logo->getCenter().y);
 
         add(logo);
     }

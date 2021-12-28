@@ -10,6 +10,7 @@ add_executable(${PROJECT_NAME}
     src/game/game.cpp
     src/game/rts/handler.cpp
 
+    src/game/rts/mob/group.cpp
     src/game/rts/mob/handler.cpp
     src/game/rts/mob/soldier.cpp
 

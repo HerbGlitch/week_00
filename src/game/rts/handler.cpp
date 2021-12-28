@@ -7,9 +7,9 @@ namespace tbyte {
     namespace rts {
         Handler::Handler(){
             surfaces = new Surfaces;
-            surfaces->mapHandler = new map::Handler(surfaces);
-            surfaces->mobHandler = new mob::Handler(surfaces);
             surfaces->uiHandler = new ui::Handler(surfaces);
+            surfaces->mapHandler = new map::Handler(surfaces);
+            surfaces->mobHandler = new mob::Handler(surfaces, surfaces->uiHandler->getData());
         }
 
         Handler::~Handler(){
