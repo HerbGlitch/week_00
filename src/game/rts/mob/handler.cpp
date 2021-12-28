@@ -5,7 +5,7 @@
 namespace tbyte {
     namespace rts {
         namespace mob {
-            Handler::Handler(Surfaces *surfaces, ui::Data *uiData): surfaces(surfaces), uiData(uiData), speed(0.007f), current(0.0f){
+            Handler::Handler(Surfaces *surfaces, ui::Data *uiData): surfaces(surfaces), uiData(uiData), speed(0.007f), current(0.0f), mGroup(nullptr){
             }
 
             Handler::~Handler(){
