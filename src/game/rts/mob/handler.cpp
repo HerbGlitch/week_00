@@ -61,7 +61,7 @@ namespace tbyte {
                 }
 
                 if(uiData->mouse.rightReleased){
-                    mGroup->addCoord({ uiData->mouse.x, uiData->mouse.y });
+                    if(mGroup){ mGroup->addCoord({ uiData->mouse.x, uiData->mouse.y }); }
                 }
 
                 if(mGroup){ mGroup->update(); }
