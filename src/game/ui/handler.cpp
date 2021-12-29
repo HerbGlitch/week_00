@@ -66,7 +66,6 @@ namespace tbyte {
             SDL_Rect selected = data->selectedArea;
             selected.x -= offset->x;
             selected.y -= offset->y;
-            std::cout << "x: " << selected.x << ", y: " << selected.y << ", w: " << selected.w << ", h: " << selected.h << std::endl;
             return selected; 
         }
 
