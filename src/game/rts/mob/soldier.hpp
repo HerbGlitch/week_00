@@ -16,7 +16,7 @@ namespace tbyte {
 
                 void setMoving(bool moving);
                 bool getMoving();
-                void setSelected(bool val);
+                void setSelected(bool selected);
 
                 bool getSelected();
 

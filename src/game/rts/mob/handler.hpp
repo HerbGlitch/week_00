@@ -1,17 +1,18 @@
 #pragma once
 #include <ge/ge>
-#include "group.hpp"
+#include "./group/group.hpp"
 #include "mob.hpp"
 #include "soldier.hpp"
 #include "../../ui/data.hpp"
+#include "../data.hpp"
 
 namespace tbyte {
     namespace rts {
         struct Surfaces;
         namespace mob {
-            class Handler : public ge::Grid {
+            class Handler : public ge::Surface {
             public:
-                Handler(Surfaces *surfaces, ui::Data *uiData);
+                Handler(Surfaces *surfaces, rts::Data *data, ui::Data *uiData);
                 ~Handler();
 
                 void update();
@@ -25,6 +26,7 @@ namespace tbyte {
                 Surfaces *surfaces;
 
                 ui::Data *uiData;
+                rts::Data *data;
 
                 Group *mGroup;
 

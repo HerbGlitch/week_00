@@ -12,16 +12,16 @@ namespace tbyte {
             }
 
             void Soldier::update() {
-                // if(moving){
-                //     moving = moveTo(moveTarget, 1.0);
-                //     if(!moving){
-                //         moveTarget = { 0, 0 };
-                //     }
-                // }
+                if(moving){
+                    moving = moveTo(moveTarget, 1.0);
+                    if(!moving){
+                        moveTarget = { 0, 0 };
+                    }
+                }
             }
 
-            void Soldier::setSelected(bool val) {
-                selected = val;
+            void Soldier::setSelected(bool selected) {
+                this->selected = selected;
             }
 
             void Soldier::startMove(int targetX, int targetY) {

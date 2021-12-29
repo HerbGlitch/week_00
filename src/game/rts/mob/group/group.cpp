@@ -16,6 +16,8 @@ namespace tbyte {
                     float a = current.y - curEnt->getBounds().y;
                     return sqrt(a * a + b * b) > dist;
                 });
+                ((Soldier *)mob)->setSelected(true);
+
                 mobs.insert(pos, mob);
             }
 
@@ -23,19 +25,21 @@ namespace tbyte {
                 current = pos;
                 moving = true;
 
-                for(Mob *&mob : mobs){ ((Soldier *)mob)->setMoving(true); }
+                for(Mob *&mob : mobs){ 
+                    ((Soldier *)mob)->setMoving(true);
+                }
             }
 
             void Group::update(){
                 if(moving){
                     moving = false;
                     for(uint32_t i = 0; i < mobs.size(); i++){
-                        if(((Soldier *)mobs.at(i))->getMoving()){
-                            moving = true;
-                            if(mobs.at(i)->moveTo({(((int)i * 32) + current.x), current.y}, 1.0f)){
-                                ((Soldier *)mobs.at(i))->setMoving(false);
-                            }
-                        }
+                        Soldier *soldier = ((Soldier *)mobs.at(i));
+                        moving = true;
+                        soldier->startMove((((int)i * 32) + current.x), current.y);
+                        // if(mobs.at(i)->moveTo({(((int)i * 32) + current.x), current.y}, 1.0f)){
+                            // soldier->setMoving(false);
+                        // }
                     }
                 }
             }

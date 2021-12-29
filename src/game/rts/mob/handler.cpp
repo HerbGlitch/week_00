@@ -1,11 +1,12 @@
 #include "handler.hpp"
-#include "../../ui/ui.hpp"
+#include "../../ui/handler.hpp"
 #include "../handler.hpp"
 
 namespace tbyte {
     namespace rts {
         namespace mob {
-            Handler::Handler(Surfaces *surfaces, ui::Data *uiData): surfaces(surfaces), uiData(uiData), speed(0.007f), current(0.0f), mGroup(nullptr){
+            Handler::Handler(Surfaces *surfaces, rts::Data *data, ui::Data *uiData): surfaces(surfaces), data(data), uiData(uiData), speed(0.007f), current(0.0f), mGroup(nullptr){
+                offset = data->offset;
             }
 
             Handler::~Handler(){
@@ -82,7 +83,7 @@ namespace tbyte {
                 ge::data->config.get(GE_VAR_STR(spritesheet));
 
                 GE_Sprite *sprite = new GE_Sprite { spritesheet, solderBounds };
-                add(new Soldier(sprite, SDL_Point { ge::data->mouse.x, ge::data->mouse.y }, *scale));
+                add(new Soldier(sprite, SDL_Point { uiData->mouse.x, uiData->mouse.y }, *scale));
             }
         }
     }

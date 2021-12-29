@@ -2,7 +2,7 @@
 
 namespace tbyte {
     namespace ui {
-        Selector::Selector(): selection({ge::data->mouse.x, ge::data->mouse.y, 0, 0}), x(ge::data->mouse.x), y(ge::data->mouse.y){}
+        Selector::Selector(SDL_FPoint *offset): offset(offset), selection({ge::data->mouse.x, ge::data->mouse.y, 0, 0}), x(ge::data->mouse.x), y(ge::data->mouse.y){}
 
         void Selector::update(){
             selection.x = (x < ge::data->mouse.x)? x : ge::data->mouse.x;

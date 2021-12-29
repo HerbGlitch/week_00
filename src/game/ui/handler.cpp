@@ -1,9 +1,10 @@
-#include "ui.hpp"
+#include "handler.hpp"
 #include "../rts/handler.hpp"
 
 namespace tbyte {
     namespace ui {
-        Handler::Handler(rts::Surfaces *surfaces): surfaces(surfaces), selector(nullptr){
+        Handler::Handler(rts::Surfaces *surfaces, rts::Data *rtsData): surfaces(surfaces), rtsData(rtsData), selector(nullptr){
+            offset = rtsData->offset;
             data = new Data { { -1, -1, 0, 0 }, { 0, 0, false, false } };
         }
 
@@ -13,6 +14,8 @@ namespace tbyte {
         }
 
         void Handler::update(){
+            data->mouse.x = ge::data->mouse.x - offset->x;
+            data->mouse.y = ge::data->mouse.y - offset->y;
             updateClick();
             updateSelector();
         }
@@ -23,8 +26,6 @@ namespace tbyte {
 
         void Handler::updateClick() {
             if(ge::data->mouse[SDL_BUTTON_RIGHT] == ge::Mouse::RELEASED){
-                data->mouse.x = ge::data->mouse.x;
-                data->mouse.y = ge::data->mouse.y;
                 data->mouse.rightReleased = true;
                 return;
             }
@@ -34,7 +35,7 @@ namespace tbyte {
         void Handler::updateSelector(){
             if(!selector){
                 if(ge::data->mouse[SDL_BUTTON_LEFT] == ge::Mouse::PRESSED){
-                    selector = new Selector();
+                    selector = new Selector(rtsData->offset);
                     return;
                 }
                 data->mouse.leftReleased = false;
@@ -60,7 +61,13 @@ namespace tbyte {
 
         bool Handler::getShouldUpdate(){ return data->mouse.leftReleased; }
 
-        SDL_Rect Handler::getSelectedArea() { return data->selectedArea; }
+        SDL_Rect Handler::getSelectedArea() {
+            SDL_Rect selected = data->selectedArea;
+            selected.x -= offset->x;
+            selected.y -= offset->y;
+            std::cout << "x: " << selected.x << ", y: " << selected.y << ", w: " << selected.w << ", h: " << selected.h << std::endl;
+            return selected; 
+        }
 
         Data *Handler::getData(){ return data; }
     }

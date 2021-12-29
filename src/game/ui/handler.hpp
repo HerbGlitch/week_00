@@ -4,6 +4,7 @@
 #include "../rts/mob/soldier.hpp"
 #include "./selector/selector.hpp"
 #include "data.hpp"
+#include "../rts/data.hpp"
 
 namespace tbyte {
     namespace rts { struct Surfaces; }
@@ -11,7 +12,7 @@ namespace tbyte {
     namespace ui {
         class Handler : public ge::Surface {
         public:
-            Handler(rts::Surfaces *surfaces);
+            Handler(rts::Surfaces *surfaces, rts::Data *rtsData);
             ~Handler();
 
             void update();
@@ -33,6 +34,7 @@ namespace tbyte {
             Selector *selector;
 
             Data *data;
+            rts::Data *rtsData;
         };
     }
 }

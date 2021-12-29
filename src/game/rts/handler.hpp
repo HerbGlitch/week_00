@@ -1,8 +1,9 @@
 #pragma once
 #include <ge/ge>
+#include "data.hpp"
 #include "./mob/handler.hpp"
 #include "./map/handler.hpp"
-#include "../ui/ui.hpp"
+#include "../ui/handler.hpp"
 
 namespace tbyte {
     namespace rts {
@@ -22,6 +23,7 @@ namespace tbyte {
 
         private:
             Surfaces *surfaces;
+            Data *data;
         };
     }
 }

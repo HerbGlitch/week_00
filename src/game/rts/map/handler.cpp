@@ -5,7 +5,9 @@
 namespace tbyte {
     namespace rts {
         namespace map {
-            Handler::Handler(Surfaces *surfaces): surfaces(surfaces), speed(0.04f), currentX(0.0f), currentY(0.0f) {
+            Handler::Handler(Surfaces *surfaces, Data *data): surfaces(surfaces), data(data), speed(0.04f), currentX(0.0f), currentY(0.0f) {
+                offset = data->offset;
+                
                 ge::data->config.setGroup("");
 
                 ge::data->config.get(GE_VAR_STR(spritesheet));
@@ -52,28 +54,28 @@ namespace tbyte {
                 if (ge::data->keyboard.getPress(SDLK_w)) {
                     currentY += speed;
                     if (currentY > 1.0f) {
-                        offset.y += 1.0f;
+                        offset->y += 1.0f;
                         currentY -= 1.0f;
                     }
                 }
                 if (ge::data->keyboard.getPress(SDLK_s)) {
                     currentY -= speed;
                     if (currentY < -1.0f) {
-                        offset.y -= 1.0f;
+                        offset->y -= 1.0f;
                         currentY += 1.0f;
                     }
                 }
                 if (ge::data->keyboard.getPress(SDLK_d)) {
                     currentX -= speed;
                     if (currentX < -1.0f) {
-                        offset.x -= 1.0f;
+                        offset->x -= 1.0f;
                         currentX += 1.0f;
                     }
                 }
                 if(ge::data->keyboard.getPress(SDLK_a)) {
                     currentX += speed;
                     if(currentX > 1.0f){
-                        offset.x += 1.0f;
+                        offset->x += 1.0f;
                         currentX -= 1.0f;
                     }
                 }
