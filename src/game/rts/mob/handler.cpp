@@ -23,6 +23,30 @@ namespace tbyte {
 
             void Handler::update(){
                 ui::Handler *uiHandler = surfaces->uiHandler;
+
+                for(ge::Entity *entity : hTypes){
+                    Soldier *soldier = ((Soldier *)entity);
+                    if(soldier->getMoving()){
+                        GE_Bounds center = GE_Bounds { soldier->getCenter().x, soldier->getCenter().y, soldier->getCenter().x, soldier->getCenter().y };
+                        center.x -= soldier->getBounds().w * 2;
+                        center.y -= soldier->getBounds().h * 2;
+                        center.w += soldier->getBounds().w * 2;
+                        center.h += soldier->getBounds().h * 2;
+
+                        std::vector<ge::Entity *> closeMobs;
+                        quadTree->query(&center, closeMobs);
+
+                        for(ge::Entity *sol : closeMobs){
+                            Soldier *colSoldier = ((Soldier *)sol);
+                            if(colSoldier != soldier) {
+                                if(soldier->collides(colSoldier->getBounds())){
+                                    soldier->setMoving(false);
+                                }
+                            }
+                        }
+                    }
+                }
+
                 ge::Handler<ge::Entity>::update();
 
                 delete quadTree;

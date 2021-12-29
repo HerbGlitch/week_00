@@ -25,7 +25,7 @@ namespace tbyte {
                 current = pos;
                 moving = true;
 
-                for(Mob *&mob : mobs){ 
+                for(Mob *&mob : mobs){
                     ((Soldier *)mob)->setMoving(true);
                 }
             }
@@ -37,9 +37,6 @@ namespace tbyte {
                         Soldier *soldier = ((Soldier *)mobs.at(i));
                         moving = true;
                         soldier->startMove((((int)i * 32) + current.x), current.y);
-                        // if(mobs.at(i)->moveTo({(((int)i * 32) + current.x), current.y}, 1.0f)){
-                            // soldier->setMoving(false);
-                        // }
                     }
                 }
             }
