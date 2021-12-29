@@ -32,6 +32,7 @@ namespace tbyte {
                 rts::Data *data;
 
                 Group *mGroup;
+                GE_Bounds bounds;
 
                 float speed;
                 float current;

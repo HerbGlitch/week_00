@@ -20,6 +20,8 @@ namespace tbyte {
 
                 bool empty();
 
+                std::vector<Mob *> &getMobs(){ return mobs; }
+
                 uint32_t id;
 
             private:

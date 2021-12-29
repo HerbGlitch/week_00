@@ -7,7 +7,11 @@ namespace tbyte {
         namespace mob {
             Handler::Handler(Surfaces *surfaces, rts::Data *data, ui::Data *uiData): surfaces(surfaces), data(data), uiData(uiData), speed(0.007f), current(0.0f), mGroup(nullptr){
                 offset = data->offset;
-                quadTree = new ge::QuadTree(ge::data->windowSize);
+                GE_ColorGrid *tempMap;
+                ge::data->config.get(GE_VAR_STR(tempMap));
+
+                bounds = { 0, 0, (int)tempMap->w * 32, (int)tempMap->h * 32 };
+                quadTree = new ge::QuadTree(bounds);
             }
 
             Handler::~Handler(){
@@ -22,7 +26,7 @@ namespace tbyte {
                 ge::Handler<ge::Entity>::update();
 
                 delete quadTree;
-                quadTree = new ge::QuadTree(ge::data->windowSize);
+                quadTree = new ge::QuadTree(bounds);
                 for(ge::Entity *e : hTypes){ quadTree->insert(e); }
 
 
@@ -54,12 +58,23 @@ namespace tbyte {
                     if(mGroup){ mGroup->addCoord({ uiData->mouse.x, uiData->mouse.y }); }
                 }
 
+                if(ge::data->keyboard.getRelease(SDLK_q)){
+                    if(mGroup){
+                        for(Mob *mob : mGroup->getMobs()){
+                            ge::Entity *test = (ge::Entity *)mob;
+                            remove(test);
+                            delete mGroup;
+                            mGroup = nullptr;
+                        }
+                    }
+                }
+
                 if(mGroup){ mGroup->update(); }
             }
 
             void Handler::render(){
                 ge::Surface::render();
-                quadTree->render();
+                quadTree->render(*offset);
             }
 
             void Handler::spawnUnit(){
