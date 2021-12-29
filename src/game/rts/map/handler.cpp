@@ -5,7 +5,7 @@
 namespace tbyte {
     namespace rts {
         namespace map {
-            Handler::Handler(Surfaces *surfaces, Data *data): surfaces(surfaces), data(data), speed(0.04f), currentX(0.0f), currentY(0.0f) {
+            Handler::Handler(Surfaces *surfaces, Data *data): surfaces(surfaces), data(data), speed(0.4f), currentX(0.0f), currentY(0.0f) {
                 offset = data->offset;
                 
                 ge::data->config.setGroup("");
