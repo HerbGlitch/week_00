@@ -1,5 +1,6 @@
 #include "handler.hpp"
 #include "../rts/handler.hpp"
+#include <iostream>
 
 namespace tbyte {
     namespace ui {

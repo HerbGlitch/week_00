@@ -16,12 +16,15 @@ namespace tbyte {
                 ~Handler();
 
                 void update();
+                void render();
 
                 void spawnUnit();
 
                 void groupMove(Group group);
 
             private:
+                ge::QuadTree *quadTree;
+
                 SDL_Texture *spritesheet;
                 Surfaces *surfaces;
 
