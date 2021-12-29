@@ -30,28 +30,10 @@ namespace tbyte {
                     spawnUnit();
                 }
 
-                // for(ge::Entity *entity : hTypes){
-                //     Soldier *soldier = ((Soldier *)entity);
-                //     if(soldier->getMoving()){
-                //         for(ge::Entity *sol : hTypes){
-                //             Soldier *colSoldier = ((Soldier *)sol);
-                //             if(colSoldier != soldier) {
-                //                 if(soldier->collides(colSoldier->getBounds())){
-                //                     // soldier->setMoving(false);
-                //                 }
-                //             }
-                //         }
-                //     }
-                // }
-
-
-                
                 if(uiData->mouse.leftReleased){
                     SDL_Rect selectorArea = uiHandler->getSelectedArea();
 
-                    if(mGroup){ 
-                        delete mGroup; 
-                    }
+                    if(mGroup){ delete mGroup; }
                     mGroup = new Group();
 
                     for(ge::Entity *entity : hTypes){
