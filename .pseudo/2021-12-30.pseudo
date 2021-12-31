@@ -1,0 +1,44 @@
+WHAT HAVE WE DONE:
+    -> units
+    -> map (from png)
+    -> quadtree (wip)
+    -> loading simple datatypes (memorie leaks are a thing with that though :'( )
+    -> offset camera movement for map and units
+    -> simple single unit and group unit movement
+    -> simple unit collision
+    -> splash screen (kinda)
+    
+GOALS (MVP)
+    -> ALL THE DUNGEON MECHANICS
+    -> currency
+    -> entity
+        -> state machines and idle path algorithms (enemy "exploration" movement)
+    -> shop
+        ->units spawn here
+    -> Pathfinding
+        -> units collide w/wall
+        -> handle how units collide with eachother
+    -> movment with angles and vectors
+    -> config
+        -> load in complex datatypes
+        -> unload
+        -> multi-thread?? (difered loading)
+    -> ge::Data (being able to store "data" from classes so children can use them)
+
+The WTF(what the friggin frick frack) Goals //future after mvp goals
+    -> will decide later as we are lazy af
+
+Possibly good ideas
+    -> Mouse and keboard async functions
+    -> Rendering on it's own thread
+    -> lessening the load on the cpu
+
+VIDEO GOALS
+    -> not much to say here, just gotta writes some stuff after mvp is hit
+
+
+(splash, and main game state)
+    -> Langi
+        -> good unit colision ()
+    -> Herb
+        -> Loading in complex objects, and unloading
