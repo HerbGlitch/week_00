@@ -1,6 +1,7 @@
 #include "group.hpp"
 #include <algorithm>
 #include <math.h>
+#include <iostream>
 
 namespace tbyte {
     namespace rts {
@@ -35,8 +36,10 @@ namespace tbyte {
                     moving = false;
                     for(uint32_t i = 0; i < mobs.size(); i++){
                         Soldier *soldier = ((Soldier *)mobs.at(i));
-                        moving = true;
-                        soldier->startMove((((int)i * 32) + current.x), current.y);
+                        int targetX = ((int)i * 32) + current.x;
+                        int targetY = current.y;
+                        soldier->startMove(targetX, targetY);
+                        std::cout << "set moving to true" << std::endl;
                     }
                 }
             }

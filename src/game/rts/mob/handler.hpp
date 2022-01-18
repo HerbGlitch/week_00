@@ -3,6 +3,7 @@
 #include "./group/group.hpp"
 #include "mob.hpp"
 #include "soldier.hpp"
+#include "enemy.hpp"
 #include "../../ui/data.hpp"
 #include "../data.hpp"
 
@@ -18,11 +19,18 @@ namespace tbyte {
                 void update();
                 void render();
 
-                void spawnUnit();
+            private:
+                void refreshQuadTree();
+
+                void check();
+
+                bool checkVision(Mob *mob);
+                void checkCollision(Mob *mob);
 
                 void groupMove(Group group);
 
-            private:
+                void spawnUnit();
+
                 ge::QuadTree *quadTree;
 
                 SDL_Texture *spritesheet;

@@ -5,10 +5,11 @@
 namespace tbyte {
     namespace rts {
         namespace mob {
-            class Soldier : public Mob {
+
+            class Enemy : public Mob {
             public:
-                Soldier(GE_Sprite *sprite, SDL_Point pos, GE_Scale &scale, int id);
-                ~Soldier();
+                Enemy(GE_Sprite *sprite, SDL_Point pos, GE_Scale &scale, int id);
+                ~Enemy();
 
                 void update();
 
@@ -28,10 +29,11 @@ namespace tbyte {
 
                 bool getSelected();
 
+                void attack(Mob *target, int damage);
                 bool getAttacked(Mob *target, int damage);
 
+
             private:
-                void attack(Mob *target, int damage);
 
                 bool selected;
             };

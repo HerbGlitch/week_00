@@ -34,15 +34,15 @@ namespace tbyte {
                         unsigned int c = tempMap->colors[x + (y * tempMap->w)];
 
                         if (c == 0xff0000) {
-                            add(new Mob(wallSprite, SDL_Point{x * 32 * ((int)*scale), y * 32 * ((int)*scale) }, *scale));
+                            add(new Mob(wallSprite, SDL_Point{x * 32 * ((int)*scale), y * 32 * ((int)*scale) }, *scale, 4, 20));
                             continue;
                         }
                         if (c == 0x00ff00) {
-                            add(new Mob(pathSprite, SDL_Point{x * 32 * ((int)*scale), y * 32 * ((int)*scale)}, *scale));
+                            add(new Mob(pathSprite, SDL_Point{x * 32 * ((int)*scale), y * 32 * ((int)*scale)}, *scale, 3, 20));
                             continue;
                         }
                         if (c == 0x0000ff) {
-                            add(new Mob(stairsSprite, SDL_Point{x * 32 * ((int)*scale), y * 32 * ((int)*scale)}, *scale));
+                            add(new Mob(stairsSprite, SDL_Point{x * 32 * ((int)*scale), y * 32 * ((int)*scale)}, *scale, 3, 20));
                         }
                     }
                 }
